@@ -11,9 +11,13 @@
   <?php
 $bilder = glob(__DIR__.'/*.jpg');
 $bild = basename($bilder[array_rand($bilder)]);
+$beschreibung = str_replace('_', ' ', basename($bild, '.jpg'));
   ?>
-  Das folgende Bild wird bei jedem Laden der Seite zufällig ausgewählt:<br>
-  <img src="<?= htmlspecialchars($bild, ENT_HTML5 | ENT_QUOTES) ?>" alt="ein zufällig ausgewähltes Raumfahrtbild">
+  Das folgende Bild wird bei jedem Laden der Seite zufällig aus <?= count($bilder) ?> Bildern ausgewählt.
+  <figure role="group">
+    <img src="<?= htmlspecialchars($bild, ENT_HTML5 | ENT_QUOTES) ?>" alt="<?= htmlspecialchars($beschreibung, ENT_HTML5 | ENT_QUOTES) ?>">
+    <figcaption><?= htmlspecialchars($beschreibung) ?></figcaption>
+  </figure>
    </main>
   </body>
 </html>
